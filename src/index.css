@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-canvas text-ink antialiased;
+    min-height: 100dvh;
+  }
+  /* Visible focus for keyboard users on every interactive element. */
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-focus));
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  input, select, textarea, button {
+    font: inherit;
+  }
+  /* Grids default to one shrinkable column, so wide inputs can never push a page wider than the screen. */
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  ::selection {
+    background: rgb(var(--c-accent) / 0.3);
+  }
+}
+
+@layer utilities {
+  /* Tabular numerals for amounts, rates and account numbers. */
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum', 'cv11';
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
